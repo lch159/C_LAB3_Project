@@ -1,17 +1,16 @@
 #include<stdio.h>
 #include<string.h>
-#include<stdlib.h>
 #include<errno.h>
+
+//REF:http://download.csdn.net/download/zhangxfeng1219/5354951
+
 
 #define F(x, y, z) (((x) & (y)) | ((~x) & (z)))
 #define G(x, y, z) (((x) & (z)) | ((y) & (~z)))
 #define H(x, y, z) ((x) ^ (y) ^ (z))
 #define I(x, y, z) ((y) ^ ((x) | (~z)))
-
 #define RL(x, y) (((x) << (y)) | ((x) >> (32 - (y))))  //x向左循环移y位
-
 #define PP(x) (x<<24)|((x<<8)&0xff0000)|((x>>8)&0xff00)|(x>>24)  //将x高低位互换,例如PP(aabbccdd)=ddccbbaa
-
 #define FF(a, b, c, d, x, s, ac) a = b + (RL((a + F(b,c,d) + x + ac),s))
 #define GG(a, b, c, d, x, s, ac) a = b + (RL((a + G(b,c,d) + x + ac),s))
 #define HH(a, b, c, d, x, s, ac) a = b + (RL((a + H(b,c,d) + x + ac),s))
