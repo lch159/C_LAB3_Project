@@ -82,14 +82,10 @@ int judge(char *s)
 
 int main(char argc, char *argv[])
 {
-    double a=clock();
     char *s =argv[1];
     dir(s);
     printf("\n总共扫描%d个文件\n\n", file_index );
     judge(s);
-    double b=clock();
-    double c=b-a;
-    printf("总耗时:%fs",c);
     return 0;
 }
 
