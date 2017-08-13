@@ -3,5 +3,5 @@ project(C_LAB3_Project)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES lab3.c)
+set(SOURCE_FILES main.c)
 add_executable(C ${SOURCE_FILES})

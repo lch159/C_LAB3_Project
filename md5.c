@@ -105,11 +105,20 @@ void md5(){                 //MD5核心算法,供64轮
 char* getmd5(char str[]){
   while(1){
     strcpy(filename, str);    //用get函数,避免scanf以空格分割数据,
-    if (filename[0]==34) filename[strlen(filename)-1]=0,strcpy(filename,filename+1);  //支持文件拖曳,但会多出双引号,这里是处理多余的双引号
-    
-    if (!(fp=fopen(filename,"rb"))) {printf("Can not open this file! code %d\n",errno);break;}  //以二进制打开文件
+    if (filename[0]==34)
+        filename[strlen(filename)-1]=0,strcpy(filename,filename+1);  //支持文件拖曳,但会多出双引号,这里是处理多余的双引号
+    if (!(fp=fopen(filename,"rb")))
+    {
+        printf("Can not open this file! errno code: %d\n",errno);
+        break;
+    }  //以二进制打开文件
     fseek(fp, 0, SEEK_END);  //文件指针转到文件末尾
-    if((len=ftell(fp))==-1) {printf("Sorry! Can not calculate files which larger than 2 GB!\n");fclose(fp);break;}  //ftell函数返回long,最大为2GB,超出返回-1
+    if((len=ftell(fp))==-1)
+    {
+        printf("Sorry! Can not calculate files which larger than 2 GB!\n");
+        fclose(fp);
+        break;
+    }  //ftell函数返回long,最大为2GB,超出返回-1
     rewind(fp);  //文件指针复位到文件头
     A=0x67452301,B=0xefcdab89,C=0x98badcfe,D=0x10325476; //初始化链接变量
     flen[1]=len/0x20000000;     //flen单位是bit
