@@ -22,10 +22,9 @@ struct file_info
 };
 int file_index=0;
 struct file_info file[2048];
-
+//Use recursion to traverse a path to find all files
 int dir(char *s)
 {
-
     DIR *dirptr=NULL;
     struct dirent *entry;
     struct stat buf;
@@ -33,7 +32,7 @@ int dir(char *s)
 
     if((dirptr = opendir(s))==NULL)
     {
-        printf("打开文件失败!");
+        printf("Open file failed!");
         return 1;
     }
     else
@@ -44,7 +43,7 @@ int dir(char *s)
 
             sprintf(path,"%s/%s",s,entry->d_name);
             if (stat(path, &buf) < 0) {
-                printf("无法访问%s 错误代码:%d\n\n",entry->d_name,errno);
+                printf("Cannot access%s Error code:%d\n\n",entry->d_name,errno);
             } else {
                 if (!S_ISDIR(buf.st_mode)) {
                     file[file_index].flag=1;
@@ -64,6 +63,7 @@ int dir(char *s)
     }
     return 0;
 }
+//find the identical files
 int judge(char *s)
 {
     for(int i =0;i<file_index-1;i++)
@@ -84,7 +84,7 @@ int main(char argc, char *argv[])
 {
     char *s =argv[1];
     dir(s);
-    printf("\n总共扫描%d个文件\n\n", file_index );
+    printf("\nTotal files: %d\n\n", file_index );
     judge(s);
     return 0;
 }
