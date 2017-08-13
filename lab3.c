@@ -18,8 +18,8 @@ struct file_info
     char file_name[40];
     char file_path[1024];
     char file_md5[40];
-    char file_type[20];
-};
+    };
+
 int file_index=0;
 struct file_info file[2048];
 //Use recursion to traverse a path to find all files
@@ -51,8 +51,9 @@ int dir(char *s)
                     file[file_index].file_size = buf.st_size;
                     sprintf(file[file_index].file_name,entry->d_name);
                     sprintf(file[file_index].file_path,path);
-                    sprintf(file[file_index].file_md5,getmd5(path));
-                    sprintf(file[file_index].file_type , strrchr(entry->d_name, '.'));
+                    sprintf(file[file_index].file_md5,getmd5(path);
+                    printf("No.%d %s\tThe file size is: %d byte\tThe path is: %s\n",
+                           file_index,file[file_index].file_name,file[file_index].file_size,file[file_index].file_path);
                     file_index++;
                 } else {
                     dir(path);
@@ -88,5 +89,3 @@ int main(char argc, char *argv[])
     judge(s);
     return 0;
 }
-
-
