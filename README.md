@@ -1,5 +1,4 @@
-# C_LAB3_Project
-C_LAB3_Project
+# FindYourFile
 
 功能：依据文件的md5码 找到指定目录下相同的文件
 
